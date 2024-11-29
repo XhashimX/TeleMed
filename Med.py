@@ -67,7 +67,7 @@ async def button_callback(update: Update, context: CallbackContext) -> None:
         symptom = context.user_data['current_symptom']
         topics[device]['الأعراض'][symptom].append(selection)
         save_data(topics)
-await query.edit_message_text(text=f"تم إضافة المرض: {selection}. هل تريد إضافة المزيد؟ إذا نعم، أرسل 'نعم'. إذا لا، أرسل 'لا'.")
+        await query.edit_message_text(text=f"تم إضافة المرض: {selection}. هل تريد إضافة المزيد؟ إذا نعم، أرسل 'نعم'. إذا لا، أرسل 'لا'.")
         context.user_data['adding_diseases'] = False
         return
 
@@ -159,7 +159,7 @@ await query.edit_message_text(text=f"تم إضافة المرض: {selection}. ه
 
 # دالة معالجة الرسائل النصية
 async def handle_message(update: Update, context: CallbackContext) -> None:
-    if 'adding_device' في context.user_data and context.user_data['adding_device']:
+    if 'adding_device' in context.user_data and context.user_data['adding_device']:
         context.user_data['current_device'] = update.message.text
         topics[update.message.text] = {"الأعراض": {}}
         save_data(topics)
@@ -168,7 +168,7 @@ async def handle_message(update: Update, context: CallbackContext) -> None:
         context.user_data['adding_symptoms'] = True
         return
 
-    if 'adding_symptoms' في context.user_data and context.user_data['adding_symptoms']:
+    if 'adding_symptoms' in context.user_data and context.user_data['adding_symptoms']:
         device = context.user_data['current_device']
         context.user_data['current_symptom'] = update.message.text
         topics[device]['الأعراض'][update.message.text] = []
@@ -178,7 +178,7 @@ async def handle_message(update: Update, context: CallbackContext) -> None:
         context.user_data['adding_diseases'] = True
         return
 
-    if 'adding_diseases' في context.user_data and context.user_data['adding_diseases']:
+    if 'adding_diseases' in context.user_data and context.user_data['adding_diseases']:
         device = context.user_data['current_device']
         symptom = context.user_data['current_symptom']
         topics[device]['الأعراض'][symptom].append(update.message.text)
