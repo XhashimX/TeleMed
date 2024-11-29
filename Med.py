@@ -1,7 +1,7 @@
 import os
 import logging
 import json
-from teeeelegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, CallbackContext, MessageHandler, filters
 
 # الرمز الخاص بالبوت
